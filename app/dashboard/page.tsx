@@ -903,7 +903,7 @@ function Dashboard() {
                                     <BarChart data={data.subjects.map((subject: any) => {
                                         return {
                                             name: subject.subject,
-                                            goal: calcTodayGoal(data.goals) -
+                                            goal: calcTodayGoalSubject(data.goals , subject.subject) - data.sessions.filter(item => new Date(item.creation).toDateString() === new Date().toDateString()))
                                         }
                                     }).sort((a: any, b: any) => b.duration - a.duration).slice(0, 5)}>
                                         <XAxis dataKey="name" tick={{ fontSize: 12 }} />
