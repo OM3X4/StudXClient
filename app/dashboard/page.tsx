@@ -1,13 +1,8 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 function Dashboard() {
 
@@ -20,6 +15,7 @@ function Dashboard() {
 
     const [timePeriod, setTimePeriod] = useState('week');
     const [targetPeriod, setTargetPeriod] = useState('week');
+
 
 
     const [data, setData] = useState({
@@ -617,6 +613,10 @@ function Dashboard() {
         "studied_all_time": 950
     })
 
+    useEffect(() => {
+        console.log([{ time: data.studied_today, goal: data.goals.reduce((a, b) => a + b.minutes, 0) }])
+    })
+
     return (
         <div className='min-h-screen'>
             <Navbar />
@@ -638,18 +638,56 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='w-[80vw] mx-auto mt-10'>
+                {/* first row */}
+                <div className='w-[80vw] mx-auto mt-10 flex gap-4'>
+                    {/* number of minutes card */}
                     <div className='bg-darkME w-1/4 h-60 rounded-2xl px-2 py-2'>
                         <div className='bg-backgroundME rounded-2xl h-30 flex justify-between px-3 py-3'>
                             <div className='text-white text-xl font-bold self-end'>
                                 <h1 className='text-sm text-grayME'>Total time</h1>
-                                <h1>{timePeriod == 'week' ? data.studied_this_week : data.studied_all_time} minutes</h1>
+                                <h1>{timePeriod == 'week' ? data.studied_today : data.studied_all_time} minutes</h1>
                             </div>
-                            <div className='text-white bg-primaryME self-start'>
+                            <div className='text-white border-2 rounded-full px-3 py-2 flex items-center justify-center border-primaryME self-start cursor-pointer hover:bg-primaryME'
+                                onClick={() => setTimePeriod(timePeriod == 'week' ? 'all-time' : 'week')}>
                                 {timePeriod}
                             </div>
                         </div>
+                        <div className='h-25 flex justify-between px-3 py-3'>
+                            <div className='text-white text-xl font-bold self-end'>
+                                <h1 className='text-sm text-grayME'>Total time</h1>
+                                <h1>{targetPeriod == 'week' ? data.studied_today : data.studied_all_time} minutes</h1>
+                            </div>
+                            <div className='text-white border-2 rounded-full px-3 py-2 flex items-center justify-center border-primaryME self-start cursor-pointer hover:bg-primaryME'
+                                onClick={() => setTargetPeriod(targetPeriod == 'week' ? 'all-time' : 'week')}>
+                                {targetPeriod}
+                            </div>
+                        </div>
                     </div>
+                    <Card className='w-1/4 bg-darkME border-none'>
+                        <CardHeader>
+                            <CardTitle className='text-white font-bold text-2xl'>Today's Goal</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="h-[300px] w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={[{
+                                        name: "Today",
+                                        time: data.studied_today,
+                                        goal: data.goals.reduce((a, b) => a + b.minutes, 0)
+                                    }]}>
+                                        <CartesianGrid strokeDasharray="0 0" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="time" fill="#8884d8" radius={10}/>
+                                        <Bar dataKey="goal" fill="#82ca9d" radius={10}/>
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </CardContent>
+
+                    </Card>
                 </div>
             </div>
         </div>
