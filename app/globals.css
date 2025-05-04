@@ -25,6 +25,24 @@ body {
   font-family: var(--font-ubuntu), sans-serif;
 }
 
+.custom-tooltip {
+  --y: 0px;
+  --x: 0px;
+  transform-origin: center;
+  animation: slideUp 0.1s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 @theme inline {
   --color-background: var(--background);

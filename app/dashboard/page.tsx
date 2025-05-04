@@ -1,12 +1,22 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import CustomTooltip from '../components/Tooltip';
 import Navbar from '../components/Navbar'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import calcTodayGoal from '../utils/calcTodayGoal';
+import calcWeekGoal from '../utils/calcWeekGoal';
+import getLast12MonthsDaysList from '../utils/getLastYear';
+import calcTodayGoalSubject from '../utils/calcTodayGoalSubject';
+
+
 
 function Dashboard() {
 
     const dayOfMonth = new Date().getDate();
+
+    const heatmapArray = getLast12MonthsDaysList();
+
 
     const today = new Date();
 
@@ -15,9 +25,6 @@ function Dashboard() {
 
     const [timePeriod, setTimePeriod] = useState('week');
     const [targetPeriod, setTargetPeriod] = useState('week');
-
-
-
     const [data, setData] = useState({
         "id": 1,
         "username": "omar",
@@ -334,7 +341,8 @@ function Dashboard() {
                 "tag": 1,
                 "tag_name": "Focus",
                 "focus": 45,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.376900Z"
             },
             {
                 "id": 2,
@@ -345,7 +353,8 @@ function Dashboard() {
                 "tag": 2,
                 "tag_name": "Study",
                 "focus": 30,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.483356Z"
             },
             {
                 "id": 3,
@@ -356,7 +365,8 @@ function Dashboard() {
                 "tag": 3,
                 "tag_name": "Review",
                 "focus": 60,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.558747Z"
             },
             {
                 "id": 4,
@@ -367,7 +377,8 @@ function Dashboard() {
                 "tag": 4,
                 "tag_name": "Practice",
                 "focus": 50,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.616702Z"
             },
             {
                 "id": 5,
@@ -378,7 +389,8 @@ function Dashboard() {
                 "tag": 5,
                 "tag_name": "Exam Prep",
                 "focus": 35,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.675771Z"
             },
             {
                 "id": 6,
@@ -389,7 +401,8 @@ function Dashboard() {
                 "tag": 6,
                 "tag_name": "Homework",
                 "focus": 45,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.733205Z"
             },
             {
                 "id": 7,
@@ -400,7 +413,8 @@ function Dashboard() {
                 "tag": 7,
                 "tag_name": "Research",
                 "focus": 30,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.800079Z"
             },
             {
                 "id": 8,
@@ -411,7 +425,8 @@ function Dashboard() {
                 "tag": 8,
                 "tag_name": "Lecture",
                 "focus": 60,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.875955Z"
             },
             {
                 "id": 9,
@@ -422,7 +437,8 @@ function Dashboard() {
                 "tag": 9,
                 "tag_name": "Group Work",
                 "focus": 50,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:40.941739Z"
             },
             {
                 "id": 10,
@@ -433,7 +449,8 @@ function Dashboard() {
                 "tag": 10,
                 "tag_name": "Self Study",
                 "focus": 40,
-                "duration": 60
+                "duration": 60,
+                "creation": "2025-05-01T14:43:41.009876Z"
             },
             {
                 "id": 11,
@@ -442,7 +459,8 @@ function Dashboard() {
                 "topic": null,
                 "tag": null,
                 "focus": 4,
-                "duration": 70
+                "duration": 70,
+                "creation": "2025-05-02T08:08:02.589876Z"
             },
             {
                 "id": 12,
@@ -451,7 +469,8 @@ function Dashboard() {
                 "topic": null,
                 "tag": null,
                 "focus": 4,
-                "duration": 70
+                "duration": 70,
+                "creation": "2025-05-03T19:22:45.845408Z"
             },
             {
                 "id": 13,
@@ -460,7 +479,8 @@ function Dashboard() {
                 "topic": null,
                 "tag": null,
                 "focus": 4,
-                "duration": 70
+                "duration": 70,
+                "creation": "2025-05-03T19:22:47.483678Z"
             },
             {
                 "id": 14,
@@ -469,7 +489,8 @@ function Dashboard() {
                 "topic": null,
                 "tag": null,
                 "focus": 4,
-                "duration": 70
+                "duration": 70,
+                "creation": "2025-05-03T19:22:48.320313Z"
             },
             {
                 "id": 15,
@@ -478,7 +499,8 @@ function Dashboard() {
                 "topic": null,
                 "tag": null,
                 "focus": 4,
-                "duration": 70
+                "duration": 70,
+                "creation": "2025-05-03T19:22:49.136394Z"
             }
         ],
         "goals": [
@@ -608,14 +630,82 @@ function Dashboard() {
                 "tag": "Morning"
             }
         ],
-        "studied_today": 280,
+        "studied_today": 0,
         "studied_this_week": 950,
-        "studied_all_time": 950
+        "studied_all_time": 950,
+        "heatmap": [
+            {
+                "creation": "2025-05-01T14:43:40.376900Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.483356Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.558747Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.616702Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.675771Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.733205Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.800079Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.875955Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:40.941739Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-01T14:43:41.009876Z",
+                "duration": 60
+            },
+            {
+                "creation": "2025-05-02T08:08:02.589876Z",
+                "duration": 70
+            },
+            {
+                "creation": "2025-05-03T19:22:45.845408Z",
+                "duration": 70
+            },
+            {
+                "creation": "2025-05-03T19:22:47.483678Z",
+                "duration": 70
+            },
+            {
+                "creation": "2025-05-03T19:22:48.320313Z",
+                "duration": 70
+            },
+            {
+                "creation": "2025-05-03T19:22:49.136394Z",
+                "duration": 70
+            }
+        ]
     })
+    const averageTime = Math.ceil(data.heatmap.reduce((a, b) => a + b.duration, 0) / 365.25);
 
-    useEffect(() => {
-        console.log([{ time: data.studied_today, goal: data.goals.reduce((a, b) => a + b.minutes, 0) }])
-    })
+    console.log(data.tags.map((tag: any) => {
+        return {
+            name: tag.tag,
+            duration: data.sessions.filter(item => new Date(item.creation).toDateString() === new Date().toDateString() || item.tag_name == tag.tag).reduce((acc, cur) => acc + cur.duration, 0),
+        }
+    }).sort((a: any, b: any) => b.duration - a.duration).slice(0, 5))
+
+
 
     return (
         <div className='min-h-screen'>
@@ -641,7 +731,7 @@ function Dashboard() {
                 {/* first row */}
                 <div className='w-[80vw] mx-auto mt-10 flex gap-4'>
                     {/* number of minutes card */}
-                    <div className='bg-darkME w-1/4 h-60 rounded-2xl px-2 py-2'>
+                    <div className='bg-darkME flex-1 h-60 rounded-2xl px-2 py-2'>
                         <div className='bg-backgroundME rounded-2xl h-30 flex justify-between px-3 py-3'>
                             <div className='text-white text-xl font-bold self-end'>
                                 <h1 className='text-sm text-grayME'>Total time</h1>
@@ -663,30 +753,167 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <Card className='w-1/4 bg-darkME border-none'>
+                    <Card className='flex-1 bg-darkME border-none h-60'>
                         <CardHeader>
                             <CardTitle className='text-white font-bold text-2xl'>Today's Goal</CardTitle>
+                            <CardDescription>{new Date("2025-11-19").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <div className="h-[300px] w-full">
+                            <div className="h-28 w-full">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <BarChart data={[{
                                         name: "Today",
-                                        time: data.studied_today,
-                                        goal: data.goals.reduce((a, b) => a + b.minutes, 0)
+                                        today: data.studied_today,
+                                        goal: calcTodayGoal(data.goals).toFixed(0)
                                     }]}>
-                                        <CartesianGrid strokeDasharray="0 0" />
-                                        <XAxis dataKey="name" />
-                                        <YAxis />
-                                        <Tooltip />
-                                        <Legend />
-                                        <Bar dataKey="time" fill="#8884d8" radius={10}/>
-                                        <Bar dataKey="goal" fill="#82ca9d" radius={10}/>
+                                        <CartesianGrid strokeDasharray="0 0" vertical={false} strokeOpacity={0.1} />
+                                        <Tooltip content={<CustomTooltip showLabel={false} />} cursor={false} />
+                                        <Bar dataKey="today" fill="#F44747" radius={10} barSize={50} />
+                                        <Bar dataKey="goal" fill="#007ACC" radius={10} barSize={50} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
                         </CardContent>
 
+                    </Card>
+                    <Card className='flex-1 bg-darkME border-none h-60'>
+                        <CardHeader>
+                            <CardTitle className='text-white font-bold text-2xl'>Week's Goal</CardTitle>
+                            <CardDescription>{new Date("2025-11-19").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="h-28 w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={[{
+                                        name: "Today",
+                                        week: data.studied_this_week,
+                                        goal: calcWeekGoal(data.goals).toFixed(0)
+                                    }]}>
+                                        <CartesianGrid strokeDasharray="0 0" vertical={false} strokeOpacity={0.1} />
+                                        <Tooltip content={<CustomTooltip showLabel={false} />} cursor={false} />
+                                        <Bar dataKey="week" fill="#F44747" radius={10} barSize={50} />
+                                        <Bar dataKey="goal" fill="#007ACC" radius={10} barSize={50} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </CardContent>
+
+                    </Card>
+                </div>
+                {/* heatmap */}
+                <div className='w-[80vw] bg-darkME mx-auto rounded-2xl  mt-10 px-20 py-5 '>
+                    <h1 className='text-white font-bold text-2xl mb-5'>Last 12 Months</h1>
+                    <div className='flex flex-wrap gap-x-1 gap-y-2'>
+                        {
+                            heatmapArray.map((day: any, index: any) => {
+
+                                let opcty = 0
+                                const dayData = data.heatmap.filter((heatmapItem: any) => heatmapItem.creation.slice(0, 10) == day.slice(0, 10))
+                                if (dayData.length > 0) {
+                                    console.log("hi")
+                                    if (dayData[0].duration > (averageTime * 2)) {
+                                        opcty = 1
+                                    } else if (dayData[0].duration > averageTime) {
+                                        opcty = 0.75
+                                    } else if (dayData[0].duration > (averageTime / 2)) {
+                                        opcty = 0.5
+                                    } else {
+                                        opcty = 0.25
+                                    }
+                                }
+
+
+                                return (
+                                    <div className='cursor-pointer size-4 bg-grayME rounded-[4px] relative group'>
+                                        <div className='opacity-0 group-hover:delay-300 group-hover:opacity-100 absolute top-1/2  group-hover:top-0 left-1/2 -translate-x-1/2  -translate-y-[130%] text-white z-10 bg-darkME rounded-sm px-3 py-1 w-fit '>
+                                            <span className='flex items-center justify-center gap-2 text-nowrap text-white'>{dayData.length > 0 ? dayData[0].duration : "0"} min on {new Date("2025-11-13T14:43:40.558Z").toLocaleDateString("en-GB", {
+                                                day: "2-digit",
+                                                month: "short",
+                                                year: "numeric",
+                                            })}</span>
+                                        </div>
+                                        <h1 className=' absolute top-0 left-0 z-5 size-4 bg-primaryME rounded-[4px]'
+                                            style={{ opacity: opcty }}>
+                                        </h1>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                {/* third row */}
+                <div className='w-[80vw] mx-auto mt-10 flex gap-4'>
+                    <Card className='flex-1 bg-darkME border-none h-80'>
+                        <CardHeader>
+                            <CardTitle className='text-white font-bold text-2xl'>Top Tags - Today</CardTitle>
+                            <CardDescription>{new Date("2025-11-19").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="h-50 w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={data.tags.map((tag: any) => {
+                                        return {
+                                            name: tag.tag,
+                                            duration: data.sessions.filter(item => new Date(item.creation).toDateString() === new Date().toDateString() && item.tag_name == tag.tag).reduce((acc, cur) => acc + cur.duration, 0),
+                                        }
+                                    }).sort((a: any, b: any) => b.duration - a.duration).slice(0, 5)}>
+                                        <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                                        <CartesianGrid strokeDasharray="0 0" vertical={false} strokeOpacity={0.1} />
+                                        <Tooltip content={<CustomTooltip showLabel={false} />} cursor={false} />
+                                        <Bar dataKey="duration" fill="#007ACC" radius={8} barSize={40} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card className='flex-1 bg-darkME border-none h-80'>
+                        <CardHeader>
+                            <CardTitle className='text-white font-bold text-2xl'>Top Tags - Week</CardTitle>
+                            <CardDescription>{new Date("2025-11-19").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="h-50 w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={data.tags.map((tag: any) => {
+                                        return {
+                                            name: tag.tag,
+                                            duration: data.sessions.filter(item => new Date(item.creation) >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) && item.tag_name == tag.tag).reduce((acc, cur) => acc + cur.duration, 0),
+                                        }
+                                    }).sort((a: any, b: any) => b.duration - a.duration).slice(0, 5)}>
+                                        <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                                        <CartesianGrid strokeDasharray="0 0" vertical={false} strokeOpacity={0.1} />
+                                        <Tooltip content={<CustomTooltip showLabel={false} />} cursor={false} />
+                                        <Bar dataKey="duration" fill="#007ACC" radius={8} barSize={40} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+                {/* fourth row */}
+                <div className='w-[80vw] mx-auto mt-10 flex gap-4 mb-60'>
+                    <Card className='flex-1 bg-darkME border-none h-80'>
+                        <CardHeader>
+                            <CardTitle className='text-white font-bold text-2xl'>Most needed subjects</CardTitle>
+                            <CardDescription>{new Date("2025-11-19").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="h-50 w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={data.subjects.map((subject: any) => {
+                                        return {
+                                            name: subject.subject,
+                                            goal: calcTodayGoal(data.goals) -
+                                        }
+                                    }).sort((a: any, b: any) => b.duration - a.duration).slice(0, 5)}>
+                                        <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                                        <CartesianGrid strokeDasharray="0 0" vertical={false} strokeOpacity={0.1} />
+                                        <Tooltip content={<CustomTooltip showLabel={false} />} cursor={false} />
+                                        <Bar dataKey="duration" fill="#007ACC" radius={8} barSize={40} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </CardContent>
                     </Card>
                 </div>
             </div>
