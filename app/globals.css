@@ -3,44 +3,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
-@theme{
-  --color-primaryME: #007ACC;
-  --color-grayME: #4D4D4D;
-  --color-backgroundME: #1E1E1E;
+@theme {
+  --color-primaryME: #007acc;
+  --color-grayME: #4d4d4d;
+  --color-backgroundME: #1e1e1e;
   --color-darkME: #191919;
-  --color-errorME: #F44747;
+  --color-errorME: #f44747;
 }
 
 @layer {
   body {
-    @apply bg-backgroundME
+    @apply bg-backgroundME;
   }
   * {
-    @apply transition-all
+    @apply transition-all;
   }
 }
 
 body {
   font-family: var(--font-ubuntu), sans-serif;
-}
-
-.custom-tooltip {
-  --y: 0px;
-  --x: 0px;
-  transform-origin: center;
-  animation: slideUp 0.1s ease-out forwards;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 

@@ -8,7 +8,7 @@ function Navbar() {
     return (
         <div className='w-[90vw] mx-auto flex items-end justify-between py-8'>
             <div className='font-ubuntu text-4xl text-white font-bold cursor-pointer hover:text-primaryME'>
-                Stud<span className='text-5xl'>X</span>
+                Stud<span className='text-5xl text-shadow-lg text-shadow-primaryME'>X</span>
             </div>
             <div>
                 <ul className='flex items-center justify-center gap-5 font-bold'>
