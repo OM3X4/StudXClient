@@ -24,6 +24,19 @@ body {
   font-family: var(--font-ubuntu), sans-serif;
 }
 
+.lander-gradient {
+  /* gradient */
+
+  width: 100vw;
+  height: 100vh;
+
+  background: radial-gradient(
+      415.62% 584.47% at 47.71% -484.47%,
+      #0065a9 0%,
+      #1e1e1e 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
 
 @theme inline {
   --color-background: var(--background);
