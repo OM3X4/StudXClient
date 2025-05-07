@@ -20,7 +20,6 @@ function Navbar() {
                 </ul>
             </div>
             <div>
-                {/* <Button className='text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Log Session</Button> */}
                 <LogSession />
             </div>
         </div>

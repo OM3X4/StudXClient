@@ -728,7 +728,7 @@ function subject() {
                             <CardTitle className='text-white text-4xl font-bold flex items-center justify-between'>Topics
                                         <Dialog>
                                             <DialogTrigger>
-                                                <Button className='text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>New tag</Button>
+                                                <div className='text-white text-xl px-2 py-2 rounded-xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>New tag</div>
                                             </DialogTrigger>
                                             <DialogContent  className="bg-darkME">
                                                 <DialogHeader>

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono , Ubuntu } from "next/font/google";
 import "./globals.css";
 import QCL from './QueryClientProvider'
+import { Toaster } from 'sonner'
+
+
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
   subsets: ["latin"],
@@ -36,6 +39,7 @@ export default function RootLayout({
         >
           <QCL>
             {children}
+            <Toaster position="top-right" richColors/>
           </QCL>
         </body>
     </html>

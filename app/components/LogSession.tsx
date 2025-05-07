@@ -678,7 +678,7 @@ function LogSession() {
     return (
         <Dialog>
             <DialogTrigger>
-                <Button className='text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Log Session</Button>
+                <div className='text-white text-2xl px-5 py-3 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Log Session</div>
             </DialogTrigger>
             <DialogContent className='bg-darkME'>
                 <DialogHeader>

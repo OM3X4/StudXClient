@@ -60,7 +60,7 @@ function App() {
             </div>
             <div className='lander-gradient  flex items-center justify-center h-screen flex-col px-[10vw] gap-5 pt-30'>
                 <h1 className='text-white text-8xl font-bold whitespace-pre-line text-center'>{"Track. Analyze.\nMaster Your Study Time."}</h1>
-                <p className='text-grayME text-2xl text-center'>Track your study time, set goals, and visualize your progress — all in one clean,
+                <p className='text-grayME text-2xl text-center selection:bg-white'>Track your study time, set goals, and visualize your progress — all in one clean,
                     powerful dashboard. Stay focused, stay consistent, and study smarter.</p>
                 <Button className='border-b-2 border-white/50 text-white text-5xl px-5 py-10 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Get Started</Button>
             </div>
