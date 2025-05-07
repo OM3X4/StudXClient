@@ -55,14 +55,14 @@ function App() {
                         <h1 className='text-white cursor-pointer hover:text-primaryME text-lg'>Features</h1>
                         <h1 className='text-white cursor-pointer hover:text-primaryME text-lg'>Contact</h1>
                     </div>
-                    <Button className='text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Get Started</Button>
+                    <Button className=' text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Get Started</Button>
                 </div>
             </div>
             <div className='lander-gradient  flex items-center justify-center h-screen flex-col px-[10vw] gap-5 pt-30'>
                 <h1 className='text-white text-8xl font-bold whitespace-pre-line text-center'>{"Track. Analyze.\nMaster Your Study Time."}</h1>
                 <p className='text-grayME text-2xl text-center'>Track your study time, set goals, and visualize your progress — all in one clean,
                     powerful dashboard. Stay focused, stay consistent, and study smarter.</p>
-                <Button className='text-white text-5xl px-5 py-10 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Get Started</Button>
+                <Button className='border-b-2 border-white/50 text-white text-5xl px-5 py-10 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Get Started</Button>
             </div>
             <div className='flex items-center justify-center h-screen flex-col px-[10vw] gap-5'>
                 <h1 className='text-white text-8xl font-bold whitespace-pre-line text-center'>Built to Make You a Better Learner</h1>
