@@ -4,7 +4,6 @@ import { toast } from "sonner";
 
 
 async function fetchLogin(data : any) {
-    console.log("fetching")
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/register/`, {
         method: 'POST',
         headers: {
@@ -43,7 +42,6 @@ export function useRegister() {
         },
         onError: (error) => {
             toast.error(`${error}`)
-            console.log('error login' , error)
         }
     })
 }

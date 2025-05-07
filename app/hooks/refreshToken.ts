@@ -10,12 +10,11 @@ export default async function(){
 
     if(!response.ok) {
         toast.error("Failed to refresh")
-        throw new Error("Failed to refresh")
+        throw new Error()
     }
 
     const result = await response.json()
     if(result.access){
         localStorage.setItem('access_token', result.access)
-        localStorage.setItem('refresh_token', result.refresh)
     }
 }

@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 async function fetchLogin(data : any) {
-    console.log("fetching")
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/token/`, {
         method: 'POST',
         headers: {
@@ -37,7 +36,6 @@ export function useLogin() {
         },
         onError: (error) => {
             toast.error(`${error}`)
-            console.log('error login' , error)
         }
     })
 }

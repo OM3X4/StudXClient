@@ -9,10 +9,8 @@ export default function calcTodayGoal(arr: any[] , condition = true): number {
         const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
 
         if (diffInDays === 0) {
-            console.log(1)
             return acc + cur.minutes;
         } else if (diffInDays < 0) {
-            console.log(2)
             return acc; // goal is in the past
         }
 

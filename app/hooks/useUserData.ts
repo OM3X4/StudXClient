@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import refreshToken from "./refreshToken";
 
 
 async function fetchUserData(){
@@ -9,14 +10,29 @@ async function fetchUserData(){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${localStorage.getItem('access_token')}1`
+            'authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
     })
 
     if(response.status === 401){
         const result = await response.json()
         if(result.detail == "Given token not valid for any token type"){
+            refreshToken();
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('access_token')}1`
+                }
+            })
 
+            if(!response.ok) {
+                throw new Error("Failed to get user data")
+            }
+            const result = await response.json()
+            return result
+        }else{
+            throw new Error("Failed to get user data")
         }
     }
 
@@ -30,7 +46,8 @@ export default function useUserData(){
 
     return useQuery({
         queryKey: ['userData'],
-        queryFn: fetchUserData
+        queryFn: fetchUserData,
+        retry: false
     })
 
 }
