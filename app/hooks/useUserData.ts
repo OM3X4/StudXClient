@@ -38,7 +38,6 @@ async function fetchUserData(){
 
 
     const result = await response.json()
-    console.log(result)
     return result
 }
 

@@ -5,7 +5,7 @@ import 'ldrs/react/Ring.css'
 // Default values shown
 
 
-function loading() {
+function Loading() {
     return (
         <div className='flex items-center justify-center w-screen h-screen'>
             <Ring
@@ -19,4 +19,4 @@ function loading() {
     )
 }
 
-export default loading
+export default Loading

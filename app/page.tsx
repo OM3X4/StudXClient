@@ -1,11 +1,15 @@
+'use client'
 import { FaHistory } from "react-icons/fa";
 import { SlBadge } from "react-icons/sl";
 import { BiTrendingUp } from "react-icons/bi";
 import { FiTarget } from "react-icons/fi";
 import { BiNote } from "react-icons/bi";
 import { BsFillPencilFill } from "react-icons/bs";
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 const cards = [
     {
@@ -42,6 +46,14 @@ const cards = [
 
 function App() {
 
+    const router = useRouter()
+
+    useEffect(() => {
+        if(localStorage.getItem('access_token')){
+            router.push('/dashboard')
+        }
+    }, [])
+
 
 
 
@@ -55,7 +67,7 @@ function App() {
                         <h1 className='text-white cursor-pointer hover:text-primaryME text-lg'>Features</h1>
                         <h1 className='text-white cursor-pointer hover:text-primaryME text-lg'>Contact</h1>
                     </div>
-                    <Button className=' text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Get Started</Button>
+                    <Link href="/register" className=' text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Get Started</Link>
                 </div>
             </div>
             <div className='lander-gradient  flex items-center justify-center h-screen flex-col px-[10vw] gap-5 pt-30'>

@@ -37,7 +37,7 @@ function Dashboard() {
     if(data) averageTime = Math.ceil(data.heatmap.reduce((a: any, b: any) => a + b.duration, 0) / 365.25)
 
 
-    if(isLoading) return <Loading />;
+    if(isLoading || !data) return <Loading />;
 
 
     return (

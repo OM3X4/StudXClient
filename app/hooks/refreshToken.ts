@@ -1,5 +1,8 @@
 import { toast } from "sonner"
-export default async function(){
+
+
+export default async function refreshToken(){
+
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/token/refresh/`, {
         method: 'POST',
         headers: {
@@ -10,7 +13,7 @@ export default async function(){
 
     if(!response.ok) {
         toast.error("Failed to refresh")
-        throw new Error()
+        window.location.href = '/authentication'
     }
 
     const result = await response.json()

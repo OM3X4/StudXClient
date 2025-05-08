@@ -1,7 +1,6 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectTrigger, SelectItem, SelectValue } from '@/components/ui/select'
@@ -13,8 +12,8 @@ function LogSession() {
 
     const [sessionData, setSessionData] = useState({
         duration: '',
-        subjectId: '',
-        topicId: '',
+        subject: '',
+        topic: '',
         focus: 5
     })
 
@@ -41,6 +40,8 @@ function LogSession() {
     }
 
 
+
+
     return (
         <Dialog>
             <DialogTrigger>
@@ -53,7 +54,7 @@ function LogSession() {
                 <div className='flex flex-col justify-center gap-5 px-20'>
                     <Label className='gap-5'>
                         <span className='text-white font-thin'>subject</span>
-                        <Select onValueChange={(subjectId) => setSessionData({ ...sessionData, subjectId })}>
+                        <Select onValueChange={(subjectId) => setSessionData({ ...sessionData, subject: subjectId })}>
                             <SelectTrigger className='text-white'>
                                 <SelectValue placeholder='Select subject' className='text-white w-full' />
                             </SelectTrigger>
@@ -68,13 +69,13 @@ function LogSession() {
                     </Label>
                     <Label className='gap-5'>
                         <span className='text-white font-thin'>Topic</span>
-                        <Select onValueChange={(topicId) => setSessionData({ ...sessionData, topicId })}>
+                        <Select onValueChange={(topicId) => setSessionData({ ...sessionData, topic:topicId })}>
                             <SelectTrigger className='text-white'>
                                 <SelectValue placeholder='Select subject' className='text-white w-full' />
                             </SelectTrigger>
                             <SelectContent className='bg-darkME text-white'>
                                 {
-                                    data.subjects.filter((item: any) => item.id === parseInt(sessionData.subjectId))[0]?.topics.map((topic: any) => (
+                                    data.subjects.filter((item: any) => item.id === parseInt(sessionData.subject))[0]?.topics.map((topic: any) => (
                                         <SelectItem key={topic.id} value={topic.id}>{topic.topic}</SelectItem>
                                     ))
                                 }
@@ -96,9 +97,9 @@ function LogSession() {
                             </span>
                         </div>
                     </Label>
-                    <Button
+                    <div
                         onClick={() => logSession()}
-                        className='text-white text-2xl px-5 py-6 rounded-2xl bg-primaryME font-bold cursor-pointer hover:bg-primary/80'>Log Session</Button>
+                        className='text-white text-center text-2xl px-3 py-2 rounded-xl hover:bg-primaryME font-bold cursor-pointer border-2 border-primaryME'>Log Session</div>
                 </div>
             </DialogContent>
         </Dialog>
