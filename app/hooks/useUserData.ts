@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import refreshToken from "./refreshToken";
+import { useRouter } from "next/navigation";
 
 
 async function fetchUserData(){
@@ -42,6 +43,9 @@ async function fetchUserData(){
 }
 
 export default function useUserData(){
+
+    const router = useRouter()
+    if(!localStorage.getItem('access_token')) router.push('/authentication')
 
     return useQuery({
         queryKey: ['userData'],
